@@ -1,26 +1,95 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+import {Element} from 'react-scroll'
+import Header from  './Components/Header'
+import Profile from './Profile'
+import Projects from './Projects'
+import Tech from './Tech'
+import Hobby from './Hobby'
+import Contact from './Contact'
+import Footer from './Components/Footer'
+import ScrollArrow from './Components/ScrollArrow'
 import './App.css';
+import Fade from 'react-reveal/Fade';
 
-function App() {
+
+class App extends Component {
+
+
+  state = {
+    
+    pageShow : false
+  }
+
+
+
+  componentDidMount(){
+
+         console.log("first",this.state.pageShow)
+          window.addEventListener('scroll',this.handleScroll);
+          //window.addEventListener('click',this.handleScroll);
+  }
+
+  
+
+
+  handleScroll =() =>{
+            console.log(this.state.pageShow)
+
+      this.setState({
+        pageShow : true
+
+      })
+                 
+    
+  }
+
+
+
+ 
+ render(){
+
+
+ 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+        <div className="" style={{height:"100vh"}}>
+        
+        <Header/>
+          <Element name="profile">
+          <Profile/>
+          </Element>
+
+
+        
+        <Element name="projects">
+          <Fade left>
+           <Projects/>
+          </Fade>
+        </Element>
+        <Element name="tech">
+        <Fade left>
+           <Tech/>
+          </Fade>
+        </Element>
+
+        <Element name="hobby">
+          <Fade left>
+           <Hobby/>
+          </Fade>
+        </Element>
+
+        <Element name="contact">
+           <Fade left> 
+           <Contact/>
+          </Fade>
+        </Element>
+         
+        <ScrollArrow/>
+        <Footer/>
+       
+        </div>
   );
+}
 }
 
 export default App;
